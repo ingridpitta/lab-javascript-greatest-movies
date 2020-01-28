@@ -44,7 +44,7 @@ howManyMovies = array => {
 orderAlphabetically = array => {
   const orderedArray = [];
 
-  let copiedArray = [...array];
+  const copiedArray = [...array];
 
   let alphabeticOrder = copiedArray.sort((a, b) => {
     if (a.title > b.title) {
