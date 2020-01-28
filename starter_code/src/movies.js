@@ -91,15 +91,39 @@ dramaMoviesRate = array => {
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 
-turnHoursToMinutes = array => {};
+turnHoursToMinutes = array => {
+  let arr = JSON.parse(JSON.stringify(array));
+
+  arr.map(movie => {
+    let splitedArray = movie.duration.split("h")[0];
+    let hour;
+    let min;
+
+    if (isNaN(splitedArray)) {
+      hour = 0;
+      min = Number(splitedArray.split("min")[0]);
+    } else {
+      hour = Number(splitedArray * 60);
+      if (movie.duration.split("h")[1] !== "") {
+        min = Number(movie.duration.split("h")[1].split("min")[0]);
+      } else {
+        min = 0;
+      }
+    }
+    movie.duration = hour + min;
+  });
+
+  return arr;
+};
+
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
 
-bestYearAvg = (array) => {
-    if(array.length === 0) {
-        return null
-    }
+bestYearAvg = array => {
+  if (array.length === 0) {
+    return null;
+  }
 
-    if(array.length === 1) {
-        return `The best year was ${array[0].year} with an average rate of ${array[0].rate}`;
-    }
+  if (array.length === 1) {
+    return `The best year was ${array[0].year} with an average rate of ${array[0].rate}`;
+  }
 };
